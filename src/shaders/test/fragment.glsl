@@ -17,9 +17,29 @@ void main()
     // // Pattern 7
     // float strength = mod(vUv.y * 10.0, 1.0);
 
-    // Pattern 8
-    float strength = mod(vUv.y * 10.0, 1.0);
-    strength = step(0.5, strength);
+    // // Pattern 8
+    // float strength = mod(vUv.y * 10.0, 1.0);
+    // strength = step(0.5, strength);
+
+    //  // Pattern 9
+    // float strength = mod(vUv.y * 10.0, 1.0);
+    // strength = step(0.8, strength);
+
+    // // Pattern 10
+    // float strength = mod(vUv.x * 10.0, 1.0);
+    // strength = step(0.8, strength);
+
+    //  // Pattern 11
+    // float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
+    // strength += step(0.8, mod(vUv.y * 10.0, 1.0));
+
+    // //Pattern 12 - we can only see when the line cross because we are multiplying.
+    // float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
+    // strength *= step(0.8, mod(vUv.y * 10.0, 1.0));
+
+     //Pattern 13
+    float strength = step(0.4, mod(vUv.x * 10.0, 1.0));
+    strength *= step(0.8, mod(vUv.y * 10.0, 1.0));
 
     // gl_FragColor = vec4(vUv, 0.6, 1.0);
     gl_FragColor = vec4(strength, strength,strength, 1.0); 
