@@ -90,9 +90,9 @@ void main()
     // float strength = mod(vUv.x * 10.0, 1.0);
     // strength = step(0.8, strength);
 
-    //  // Pattern 11
-    // float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
-    // strength += step(0.8, mod(vUv.y * 10.0, 1.0));
+     // Pattern 11
+    float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
+    strength += step(0.8, mod(vUv.y * 10.0, 1.0));
 
     // //Pattern 12 - we can only see when the line cross because we are multiplying.
     // float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
@@ -269,8 +269,8 @@ void main()
     // // Pattern 49
     // float strength = sin(cnoise(vUv * 10.0) * 20.0);
 
-    // Pattern 50
-    float strength = step(0.9, sin(cnoise(vUv * 10.0) * 20.0));
+    // // Pattern 50
+    // float strength = step(0.9, sin(cnoise(vUv * 10.0) * 20.0));
 
     // float strength = angle;
 
@@ -278,5 +278,16 @@ void main()
     // float strength = vUv.x + vUv.y;
 
     // gl_FragColor = vec4(vUv, 0.6, 1.0);
-    gl_FragColor = vec4(strength, strength, strength, 1.0); 
+
+    // Clamp the stregth
+    strength = clamp(strength, 0.0, 1.0);
+
+    // // Colored version
+    vec3 blackColor = vec3(0.0, 0.0, 0.0);
+    vec3 uvColor = vec3(vUv, 0.5);
+    vec3 mixedColor = mix(blackColor, uvColor, strength);
+    gl_FragColor = vec4(mixedColor, 1.0);
+
+    // // Black and white version
+    // gl_FragColor = vec4(strength, strength, strength, 1.0); 
 }
